@@ -20,7 +20,7 @@ Object.entries(EVENT_TO_SCENE).forEach(([eventName, sceneName]) => {
 });
 
 
-window.onload = () => launchScene("endingcredit"); // AI이용 - 시작 시 start화면
+window.onload = () => launchScene("start"); // AI이용 - 시작 시 start화면
 
 window.state = window.state || {}; // 모든 파일에서 사용가능한 변수들(객체 이용)
 window.state.characterX = 100; // window.state의 사용법 (캐릭터의 위치를 저장)
