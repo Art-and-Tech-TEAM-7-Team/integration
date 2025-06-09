@@ -227,7 +227,7 @@ if (blackScreen) {
   p.noStroke();
   p.textSize(30);
   p.textAlign(p.CENTER, p.CENTER);
-  p.text("만약 운전면허증을을 가져갔다면??", p.width/2, p.height/2);
+  p.text("만약 운전면허증을을 가져갔다면?", p.width/2, p.height/2);
 }
 
 };

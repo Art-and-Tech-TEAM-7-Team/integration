@@ -32,6 +32,7 @@ p.draw = function() {
     p.image(startImg, 0, 0, p.width, p.height);
     drawEyes();
     p.pop();
+    
     if (showTitle) {
         // 블러 효과 비슷하게 만들기
         p.push();
