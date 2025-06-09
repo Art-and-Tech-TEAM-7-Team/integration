@@ -57,7 +57,7 @@ function drawElement(img, imgX, imgY, imgW = null) {
 }
     
 
-//ai 사용
+//ai 사용 : 화면 전체 흔들림림
 p.draw=function() {
     p.push();
     if (shake) {
@@ -92,7 +92,6 @@ p.draw=function() {
                 music.stop();
                 window.dispatchEvent(new Event("goToContrast"));
             }, 3000); 
-            // window.dispatchEvent(new Event("goToContrast"));
         }
     }
 } 

@@ -24,7 +24,7 @@ p.draw = function() {
     p.background(255);
 
     // 이미지 
-    // 줌아웃 효과
+    // AI이용 - 줌아웃 효과
     p.push();
     p.translate(p.width/2, p.height/2);
     p.scale(zoomOut);
@@ -61,9 +61,6 @@ p.draw = function() {
         p.fill(80);
         p.text("스크롤, 마우스 클릭, 좌우 화살표로 인터렉션이 가능합니다.", p.width / 2, p.height / 2 + 100);
 
-        // p.textSize(28);
-        // p.fill(80);
-        // p.text("클릭하면 약간의 인터렉션이 있습니다.", p.width / 2, p.height / 2 + 150);
     } else {
         if (eyeOpen) {
             zoomOut = 1 - p.constrain(viewPoint / 200, 0, 0.5);   // 1 ~ 0.5
@@ -75,6 +72,10 @@ p.draw = function() {
             p.fill(0, darkAlpha);
             p.rect(0, 0, p.width, p.height);
             p.pop();
+        } else {
+            p.textSize(28);
+            p.fill(80);
+            p.text("눈을 뜨면 다음 화면으로 이동 가능합니다.", p.width / 2, p.height / 2 + 100);
         }
         drawEyes();
     }
@@ -92,7 +93,7 @@ p.mousePressed = function() {
 
 p.mouseWheel = function(event) {
     if (!showTitle && eyeOpen) {
-        if (event.delta > 0) { // AI이용 - 스크롤 다운, 업 판정정
+        if (event.delta > 0) { // AI이용 - 스크롤 다운, 업 판정
         viewPoint += 10; // 스크롤 다운 
         } 
         if (event.delta < 0) {
@@ -103,7 +104,7 @@ p.mouseWheel = function(event) {
 
     //일정 정도 이상 스크롤 시 화면 이동
     if (viewPoint >= 50) { 
-        window.dispatchEvent(new Event("goToHouse"));
+        window.dispatchEvent(new Event("goToHouse")); // AI이용 - 장면 전환 이벤트 생성
     }
 };
 

@@ -71,7 +71,7 @@ p.draw = function() {
 
 p.mousePressed = function() {
     if (speak) {
-        window.dispatchEvent(new Event("goToCompany2"));
+        window.dispatchEvent(new Event("goToCompany2")); // AI이용 - 장면 전환 이벤트 생성
     }
 }
 
@@ -115,10 +115,11 @@ function drawCharacter() {
     let drawX = characterX - cameraX;
     let drawY = p.height - 450/2 - 30; 
 
+    // AI이용 - 캐릭터 뒤집기
     p.push();
     p.translate(drawX, drawY);
     if (characterBack) {
-        p.scale(-1, 1);
+        p.scale(-1, 1); // AI이용 - 캐릭터 뒤집기
     }
     p.imageMode(p.CENTER);
     p.image(characterImg[characterFrame], 0, 0, 300*(characterImg[characterFrame].width/characterImg[characterFrame].height) , 300);
@@ -127,7 +128,7 @@ function drawCharacter() {
 
 function drawBus() {
     let busH = busW*(busImg.height/busImg.width);
-    if (characterX >= busStopImg.width - 1050) { //임시시
+    if (characterX >= busStopImg.width - 1050) { 
         busMove = true;
     }
     if (busMove) {
@@ -137,18 +138,17 @@ function drawBus() {
     p.image(busImg, drawBusX, busY, busW , busH);
 }
 
+// AI이용 - 캐릭터 뒤집기
 function drawText() {
     const balloonX = characterX - cameraX;
     const balloonY = p.height - 530;
-    // let drawX = characterX - cameraX + 100;
-    // let drawY = p.height - 530; // 머리 위
     p.push();
 
     p.fill(255);
     p.stroke(0);
     p.strokeWeight(2);
     p.rectMode(p.CENTER, p.CENTER);
-    p.rect(balloonX, balloonY + 15, 300, 50, 10);
+    p.rect(balloonX, balloonY + 15, 300, 50, 10); // AI 이용 -사각형 모서리 둥글게
 
     p.fill(0);
     p.noStroke();

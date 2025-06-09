@@ -55,8 +55,8 @@ p.preload = function() {
 p.setup = function() {
     p.createCanvas(p.windowWidth, p.windowHeight); 
 
-    totalWidth = houseImg.width + parkImg.width * 2;
-    // window를 사용해서 전역(파일 전체)에서 공유하는 변수들 설정정
+    totalWidth = houseImg.width + parkImg.width * 2; // AI를 이용해 코드 정리리
+    // window를 사용해서 전역(파일 전체)에서 공유하는 변수들 설정
     characterX = window.state.characterX !== undefined ? window.state.characterX : 100;
     cameraX = window.state.cameraX !== undefined ? window.state.cameraX : 0;
     
@@ -74,11 +74,11 @@ p.setup = function() {
 p.draw = function() {
     p.background(220);
 
-    viewWidth = Math.min(p.windowWidth, houseImg.width);
+    viewWidth = Math.min(p.windowWidth, houseImg.width); // AI이용 - 화면 너비 제한
 
     // 화면에서 캐릭터가 중앙을 벗어나면 카메라가 따라감
     let screenCenter = viewWidth / 2;
-    // (1) characterX - cameraX : 화면 상의 캐릭터 위치
+    // characterX - cameraX : 화면 상의 캐릭터 위치
     if (characterX - cameraX > screenCenter + 100) cameraX = characterX - (screenCenter + 100);
     if (characterX - cameraX < screenCenter - 100) cameraX = characterX - (screenCenter - 100);
     
@@ -111,6 +111,8 @@ p.draw = function() {
         }
     } 
     drawCharacter(); // 캐릭터를 그리는 함수
+
+    // AI이용 - 메시지를 띄우는 부분
     if (showMessage) {
         messageCount++;
         if (messageCount >= 1000) {
@@ -136,7 +138,7 @@ p.mousePressed = function() {
         window.state.characterX = characterX;
         window.state.cameraX = cameraX;
         
-        window.dispatchEvent(new Event("goToDesk"));
+        window.dispatchEvent(new Event("goToDesk")); // AI이용 - desk.js로 이동
     }
 
     // 커피숍
@@ -157,24 +159,24 @@ p.mousePressed = function() {
     if (drawobjX <= p.mouseX && p.mouseX <= drawobjX + 400) {
         if (window.state.selectedItem === "car") { 
             if (window.state.getCoffee) {
-                window.dispatchEvent(new Event("goToCar"));
+                window.dispatchEvent(new Event("goToCar")); // AI이용 - 장면전환
             } else {
                 thinkingType = "coffee";
                 thinkingTime = p.millis();
             }
         } else if (window.state.selectedItem === "stair") {
-             window.dispatchEvent(new Event("goToSubway"));
+             window.dispatchEvent(new Event("goToSubway")); // AI이용 - 장면전환
         }
     }
 }
 
-// 브라우저 창의 크기가 변경되었을 때 캔버스의 크기를 브라우저에 맞추는 함수
+// AI이용 - 브라우저 창의 크기가 변경되었을 때 캔버스의 크기를 브라우저에 맞추는 함수
 p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
 };
 
 // 문 이미지 그리는 함수 
-// doorOpen를 통해 닫힌 문을 그릴 지, 열린 문을 그릴 지 결정
+// window.state.doorOpen를를 통해 닫힌 문을 그릴 지, 열린 문을 그릴 지 결정
 function drawDoor() {
     let doorX = houseImg.width - doorImg[0].width;
     let doorY = houseImg.height - doorImg[0].height;
@@ -208,6 +210,7 @@ function drawDesk() {
 
 // 캐릭터를 그리는 함수
 // 화살표 키를 이용해서 움직임
+// AI 이용
 function drawCharacter() {
     let isMoving = false;
 
@@ -251,10 +254,11 @@ function drawCharacter() {
     let drawX = characterX - cameraX;
     let drawY = p.height - 450/2 - 30; 
 
+    // AI이용 - 캐릭터 뒤집기
     p.push();
     p.translate(drawX, drawY);
-    if (characterBack) {
-        p.scale(-1, 1);
+    if (characterBack) { 
+        p.scale(-1, 1); // AI이용 - 캐릭터 뒤집기
     }
     p.imageMode(p.CENTER);
     p.image(characterImg[characterFrame], 0, 0, 450*(characterImg[characterFrame].width/characterImg[characterFrame].height) , 450);
@@ -262,7 +266,7 @@ function drawCharacter() {
 }
 
 // 요소를 그리는 함수
-// 이미지, x좌표, y좌표, 가로크기
+// parameter: 이미지, x좌표, y좌표, 가로크기
 // 이미지의 비율을 유지하기 위해서 세로크기는 가로크기에 의존해서 설정
 function drawElement(img, imgX, imgY, imgW) {
     let imgH = imgW*(img.height/img.width);
@@ -274,21 +278,17 @@ function drawElement(img, imgX, imgY, imgW) {
     }
 }
 
-// 경고 메시지를 띄우는 함수
-// showWarningText 으로 메시지를 띄워야 하는 지 조절
-// warningStartTime, WARNING_DURATION 으로 시간 조절
+// AI 이용(사각형 모서리) - 메시지를 띄우는 함수
 function drawText() {
     const balloonX = characterX - cameraX;
     const balloonY = p.height - 530;
-    // let drawX = characterX - cameraX + 100;
-    // let drawY = p.height - 530; // 머리 위
     p.push();
 
     p.fill(255);
     p.stroke(0);
     p.strokeWeight(2);
     p.rectMode(p.CENTER, p.CENTER);
-    p.rect(balloonX, balloonY + 15, 300, 50, 10);
+    p.rect(balloonX, balloonY + 15, 300, 50, 10); // AI 이용 -사각형 모서리 둥글게
 
     p.fill(0);
     p.noStroke();

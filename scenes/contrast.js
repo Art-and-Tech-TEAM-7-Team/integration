@@ -96,7 +96,7 @@ export function makeContrastSketch(){
             showThinking=true;
             thinkingStartTime=p.millis();
         }
-        
+     //AI이용: 음표들에 역동성 부여여   
        for (let i = 0; i < spawnedNotes.length; i++) {
     let note = spawnedNotes[i];
     let scale = 1 + 0.05 * p.sin(p.frameCount * 0.1 + i);
@@ -120,7 +120,7 @@ if(showThinking){
         }
     }
 
-    
+    //AI이용: 음표 무작위 생성성
     p.keyPressed=function(){
         if(p.key===' ' && !notesSpawned){
              for (let i = 0; i < 10; i++) {  

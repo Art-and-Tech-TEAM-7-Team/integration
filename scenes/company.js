@@ -60,7 +60,7 @@ p.windowResized = function () {
   bossH = bossImg.height;
 };
 
-//AI 사용
+//AI 사용 : 시계 각도 계산
 function resetClock() {
   hourAngle = p.radians(255);
   minuteAngle = p.radians(180);
@@ -122,7 +122,7 @@ p.draw = function () {
   drawHoverClock(clockIMG,clockX,clockY,200);
 
 
-  // 시계 바늘
+  // AI사용용
   p.push();
   p.translate(clockX, clockY);
   p.rotate(minuteAngle);
@@ -177,7 +177,7 @@ p.draw = function () {
       window.state.ending[0] = true; // 자동차 장면 완료료
     }
 
-    // 서류 생성
+    // AI사용 : 서류 생성
     documentTimer++;
     if (documentTimer % 15 >= 0 && documentStack.length < maxDocuments) {
       documentStack.push({
@@ -195,7 +195,7 @@ p.draw = function () {
     p.imageMode(p.CORNER);
   }
 
-  // 말풍선
+  // AI 말풍선 등장하는 시간 및 말풍선과 텍스트 상대적 위치 구현현
   if (showSpeech) {
     speechTimer++;
     if (speechTimer > speechDuration) {

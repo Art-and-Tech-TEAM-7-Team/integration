@@ -55,7 +55,7 @@ export function makeCompany2Sketch() {
       bossW = img.width;
       bossH = img.height;
     };
-
+//AI 사용: 시계 각도 계산산
     function resetClock() {
       hourAngle = p.radians(275);
       minuteAngle = p.radians(60);
@@ -66,7 +66,7 @@ export function makeCompany2Sketch() {
       const hourDelta = (targetHourAngle + p.TWO_PI) - hourAngle;
       hourSpeed = minuteSpeed * (hourDelta / minuteDelta);
     }
-
+//AI 사용: 시계,보스에 마우스 가져다 놓았을 때 떨림림
     function drawHoverClock(img, x, y, w) {
   let h = w * (img.height / img.width);
   p.imageMode(p.CENTER);
@@ -119,7 +119,7 @@ p.draw = function () {
   drawHoverClock(clockIMG,clockX,clockY,200);
 
 
-  // 시계 바늘
+  // ai 사용: 시계 바늘
   p.push();
   p.translate(clockX, clockY);
   p.rotate(minuteAngle);
@@ -136,7 +136,7 @@ p.draw = function () {
   p.line(0, 0, 0, -hourLength);
   p.pop();
 
-  // 상사 페이드 인/아웃
+  // AI 사용:상사 페이드 인/아웃
   if (fadingIn) {
     alpha += 5;
     if (alpha >= 255) {
@@ -157,7 +157,7 @@ p.draw = function () {
   p.noTint();
   p.pop();
 
-  // 회전
+  // AI사용: 회전
   if (rotating) {
     if (minuteAngle < targetMinuteAngle) {
       minuteAngle += minuteSpeed;
@@ -177,7 +177,7 @@ p.draw = function () {
       window.state.ending[1] = true;
     }
 
-    // 서류 생성
+    // ai 사용: 서류 생성
     documentTimer++;
     if (documentTimer % 15 >= 0 && documentStack.length < maxDocuments) {
       documentStack.push({
