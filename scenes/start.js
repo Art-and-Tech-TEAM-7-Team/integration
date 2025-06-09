@@ -75,7 +75,7 @@ p.draw = function() {
         } else {
             p.textSize(28);
             p.fill(80);
-            p.text("눈을 뜨면 다음 화면으로 이동 가능합니다.", p.width / 2, p.height / 2 + 100);
+            p.text("눈이 떠있어야 다음 화면으로 이동 가능합니다.", p.width / 2, p.height / 2 + 100);
         }
         drawEyes();
     }
