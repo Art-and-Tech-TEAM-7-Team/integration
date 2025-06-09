@@ -15,6 +15,7 @@ let fadingIn = true;
 let fadingOut = false;
 let speechTimer = 0;
 let speechDuration = 120; // 약 2초 (60fps 기준)
+let timerStart = false;
 let bossSpeech = false;
 
 let darkness = 0;
@@ -256,18 +257,19 @@ p.mousePressed = function () {
     p.mouseX >= bossX && p.mouseX <= bossX + bossW &&
     p.mouseY >= bossY && p.mouseY <= bossY + bossH;
 
-  if (clickedBoss) {
+  if (clickedBoss && !bossSpeech) {
     showSpeech = true;
     speechTimer = 0;
     bossSpeech = true;
   }
 
-  if (clickedClock && bossSpeech) {
+  if (clickedClock && bossSpeech && !timerStart) {
     resetClock();
     rotating = true;
     documentStack = [];
     documentTimer = 0;
     darkness = 0;
+    timerStart = true;
   }
 
   if (window.state.ending[0]) {
@@ -276,6 +278,7 @@ p.mousePressed = function () {
     } else {
       window.dispatchEvent(new Event("goToDesk"));
       window.state.characterX = 1200;
+      window.state.doorOpen = false;
     }
   }
 };

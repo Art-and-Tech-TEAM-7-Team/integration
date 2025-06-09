@@ -60,11 +60,11 @@ p.draw = function() {
 
         p.textSize(28);
         p.fill(80);
-        p.text("아래로 스크롤하면 화면이 넘어갑니다.", p.width / 2, p.height / 2 + 100);
+        p.text("스크롤, 마우스 클릭, 좌우 화살표로 인터렉션이 가능합니다.", p.width / 2, p.height / 2 + 100);
 
-        p.textSize(28);
-        p.fill(80);
-        p.text("클릭하면 약간의 인터렉션이 있습니다.", p.width / 2, p.height / 2 + 150);
+        // p.textSize(28);
+        // p.fill(80);
+        // p.text("클릭하면 약간의 인터렉션이 있습니다.", p.width / 2, p.height / 2 + 150);
     } else {
         if (eyeOpen) {
             zoomOut = 1 - p.constrain(viewPoint / 200, 0, 0.5);   // 1 ~ 0.5

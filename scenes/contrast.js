@@ -5,7 +5,7 @@ export function makeContrastSketch(){
         let car3IMG;
         let subwayIMG;
         let thinkingIMG;
-        let thinkingDuration=1000;
+        let thinkingDuration=2000;
         let thinkingStartTime =0;
         let showThinking=false;
    

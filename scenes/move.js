@@ -24,7 +24,7 @@ let frameCountForStep = 0;      // 프레임 전환 카운터(속도조절용)
 const FRAME_CHANGE_SPEED = 10;   // 몇 프레임마다 한 번씩 이미지가 바뀔지
 
 let cameraX = 0; // 카메라의 초기 X 위치
-let speed = 20; // 캐릭터의 속도도
+let speed = 10; // 캐릭터의 속도도
 let viewWidth;
 
 let messageCount; 
@@ -230,6 +230,7 @@ function drawCharacter() {
                 characterX -= speed;
             } else if (window.state.selectedItem === "") {
                 characterX -= speed;
+                thinkingType = "card";
                 thinkingTime = p.millis();
             }
         };

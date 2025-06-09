@@ -123,6 +123,8 @@ export function makeInner2Sketch() {
       ) {
         doorOpened = true;
         doorOpeningStart = p.millis();
+      } else if (doorOpened) {
+        window.dispatchEvent(new Event("goToStair"));
       }
     };
 
