@@ -16,6 +16,8 @@ export function makeCompany2Sketch() {
     let timerStart = false;
     let bossSpeech = false;
 
+    let blackScreen = false;
+
     let darkness = 0;
     let rotating = false;
 
@@ -246,6 +248,17 @@ p.draw = function () {
     drawElement(coffeeImg[4], coffeeX, coffeeY, coffeeW);
     break;
 }     
+
+if (blackScreen) {
+  p.fill(255, 50);
+  p.rect(0, 0, p.width, p.height);
+  p.fill(0);
+  p.noStroke();
+  p.textSize(30);
+  p.textAlign(p.CENTER, p.CENTER);
+  p.text("만약 운전면허증을을 가져갔다면??", p.width/2, p.height/2);
+}
+
 };
 
 function drawElement(img, imgX, imgY, imgW) {
@@ -277,14 +290,16 @@ p.mousePressed = function () {
   if (window.state.ending[1]) {
     if (window.state.ending[0]) {
       window.dispatchEvent(new Event("goToEndingcredit"));
-    } else {
+    } else if (blackScreen) {
       window.dispatchEvent(new Event("goToDesk"));
       window.state.characterX = 1200;
       window.state.doorOpen = false;
+    } else {
+      blackScreen = true;
     }
   }
-};
 
 
+}
 };
 }

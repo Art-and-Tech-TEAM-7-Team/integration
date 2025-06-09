@@ -18,6 +18,8 @@ let speechDuration = 120; // 약 2초 (60fps 기준)
 let timerStart = false;
 let bossSpeech = false;
 
+let blackScreen = false;
+
 let darkness = 0;
 let rotating = false;
 
@@ -243,6 +245,16 @@ p.draw = function () {
     break;
 }
 
+if (blackScreen) {
+  p.fill(255, 50);
+  p.rect(0, 0, p.width, p.height);
+  p.fill(0);
+  p.noStroke();
+  p.textSize(30);
+  p.textAlign(p.CENTER, p.CENTER);
+  p.text("만약 교통카드를 가져갔다면?", p.width/2, p.height/2);
+}
+
   
 };
 
@@ -275,15 +287,14 @@ p.mousePressed = function () {
   if (window.state.ending[0]) {
     if (window.state.ending[1]) {
       window.dispatchEvent(new Event("goToEndingcredit"));
-    } else {
+    } else if (blackScreen) {
       window.dispatchEvent(new Event("goToDesk"));
       window.state.characterX = 1200;
       window.state.doorOpen = false;
+    } else {
+      blackScreen = true;
     }
   }
 };
-
-
-
-  };
+}
 }

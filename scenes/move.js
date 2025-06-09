@@ -148,7 +148,7 @@ p.mousePressed = function() {
         } else if (window.state.selectedItem === "stair") {
             messageCount = 0;
             showMessage = true;
-            message = "시간이 없어요! 지하철을 빨리 타야 해요!";
+            message = "시간이 없다. 지하철을 빨리 타야 한다!";
         }
     }
 

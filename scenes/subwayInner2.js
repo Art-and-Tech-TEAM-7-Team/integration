@@ -70,12 +70,9 @@ export function makeInner2Sketch() {
       }
 
       // 사람 hover 체크 (클릭 전까지만 확대)
-      let isMouseOverPerson =
-        !isFinished &&
-        p.mouseX >= pX &&
-        p.mouseX <= pX + 220 &&
-        p.mouseY >= pY &&
-        p.mouseY <= pY + 700;
+      let isMouseOverPerson = !isFinished && 
+        p.mouseX >= pX && p.mouseX <= pX + 220 &&
+        p.mouseY >= pY && p.mouseY <= pY + 700;
 
       let personScale = isMouseOverPerson ? 1.05 : 1.0;
       let currentPerson = isFinished ? person2 : person;
