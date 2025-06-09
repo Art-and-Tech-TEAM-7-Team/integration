@@ -34,7 +34,7 @@ export function makeStairSketch() {
       let phoneY = pY - 300;
 
       // 핸드폰과 말풍선 전환 처리
-      if (phoneVisible) {
+      if (phoneVisible) { //**ai 사용: 핸드폰과 말풍선 전환 처리**
         let elapsed = p.millis() - phoneTimer;
 
         if (elapsed < 1000) {
@@ -70,7 +70,7 @@ export function makeStairSketch() {
       }
     };
 
-    function drawElement(img, imgX, imgY, imgW, allowZoom) {
+    function drawElement(img, imgX, imgY, imgW, allowZoom) { 
       let imgH = imgW * (img.height / img.width);
       if (
         allowZoom &&
@@ -87,7 +87,7 @@ export function makeStairSketch() {
       }
     }
 
-    p.mousePressed = function () {
+    p.mousePressed = function () { //**ai 사용: 혼합 전환 효과 기능능**
       if (phoneVisible || moveEnabled || hasPhoneShown) return;
 
       let imgH = personW * (person.height / person.width);

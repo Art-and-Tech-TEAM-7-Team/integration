@@ -23,7 +23,7 @@ export function makeInnerSketch() {
       p.imageMode(p.CORNER);
     };
 
-    // ✅ 봉/의자 마우스 오버 시 확대 함수
+    // ✅ 봉/의자 마우스 오버 시 확대 함수 **ai 사용: 갖다대면 확대되는 함수**
     p.drawElement = function(img, imgX, imgY, imgW) {
       let imgH = imgW * (img.height / img.width);
       if (
@@ -57,7 +57,7 @@ export function makeInnerSketch() {
       // ✅ 봉 그리기: 무조건 drawElement 사용
       p.drawElement(pole, pX, pY, 25);
 
-      // 사람 등장
+      // 사람 등장 **ai 사용: 사람 등장 시 서서히 나타나는 효과**
       for (let personObj of people) {
         let elapsed = p.millis() - personObj.startTime;
         let alpha = p.map(elapsed, 0, 500, 0, 255, true);

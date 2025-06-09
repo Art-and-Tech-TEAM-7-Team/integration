@@ -60,6 +60,7 @@ p.windowResized = function () {
   bossH = bossImg.height;
 };
 
+//AI 사용
 function resetClock() {
   hourAngle = p.radians(255);
   minuteAngle = p.radians(180);
@@ -70,7 +71,7 @@ function resetClock() {
   const hourDelta = (targetHourAngle + p.TWO_PI) - hourAngle;
   hourSpeed = minuteSpeed * (hourDelta / minuteDelta);
 }
-
+// AI 사용 (마우스 다가가면 흔들림)
 function drawHoverClock(img, x, y, w) {
   let h = w * (img.height / img.width);
   p.imageMode(p.CENTER);
@@ -89,7 +90,7 @@ function drawHoverClock(img, x, y, w) {
 
   p.imageMode(p.CORNER); // 다른 이미지 위해 복구
 }
-
+// AI 사용 (마우스 다가가면 흔들림)
 function drawHoverBoss(img, x, y) {
   let w = img.width;
   let h = img.height;
@@ -138,7 +139,7 @@ p.draw = function () {
   p.line(0, 0, 0, -hourLength);
   p.pop();
 
-  // 상사 페이드 인/아웃
+  // AI 사용 (상사 페이드인 페이드아웃 구현현)
   if (fadingIn) {
     alpha += 5;
     if (alpha >= 255) {
@@ -159,7 +160,7 @@ p.draw = function () {
   p.noTint();
   p.pop();
 
-  // 회전
+  // AI 사용용
   if (rotating) {
     if (minuteAngle < targetMinuteAngle) {
       minuteAngle += minuteSpeed;

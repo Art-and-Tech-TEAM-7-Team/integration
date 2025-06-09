@@ -25,12 +25,12 @@ export const SCENE_MAP = { // AI이용 - 각 장면을 생성하는 함수들
   contrast:     () => makeContrastSketch(),
   company:      () => makeCompanySketch(),
   company2:     () => makeCompany2Sketch(),
-  endingcredit: () => makeEndingcreditSketch(),
   screendoor:   () => makeScreendoorSketch(),
   subwayInner:  () => makeInnerSketch(),
   subwayInner2: () => makeInner2Sketch(),
   stair:        () => makeStairSketch(),
-  busStop:      () => makeBusStopSketch()
+  busStop:      () => makeBusStopSketch(),
+  endingcredit: () => makeEndingcreditSketch()
 };
 
 // 이벤트 이름 <-> 장면 이름 매핑 - 위의 객체 참고(AI이용용)

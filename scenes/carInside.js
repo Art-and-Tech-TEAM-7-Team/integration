@@ -57,7 +57,7 @@ function drawElement(img, imgX, imgY, imgW = null) {
 }
     
 
-
+//ai 사용
 p.draw=function() {
     p.push();
     if (shake) {

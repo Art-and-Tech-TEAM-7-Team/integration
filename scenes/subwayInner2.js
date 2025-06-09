@@ -48,7 +48,7 @@ export function makeInner2Sketch() {
 
       let doorScale = isMouseOverDoor ? 1.05 : 1.0;
 
-      // 문 열림 애니메이션 적용
+      // 문 열림 애니메이션 적용 //**ai 사용: 문 열릴 때 서서히 열리는 기능**
       if (doorState === 'opening') {
         if (door1X > -150) {
           door1X -= 8;
@@ -114,7 +114,7 @@ export function makeInner2Sketch() {
         isFinished = true;
       }
 
-      // 문 클릭
+      // 문 클릭 **ai 사용: 문 클릭 시 열리는 기능**
       const door1Clicked = p.mouseX >= door1X &&
                            p.mouseX <= door1X + 300 &&
                            p.mouseY >= door1Y &&

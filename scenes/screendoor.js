@@ -61,7 +61,7 @@ export function makeScreendoorSketch() {
 
       p.pop();
 
-      // 문 열리는 애니메이션
+      // 문 열리는 애니메이션 **ai 사용: 문열릴 때 서서히 열리는 기능**
       if (doorState === 'opening') {
         if (door1X > 50) {
           door1X -= 10;
@@ -79,7 +79,7 @@ export function makeScreendoorSketch() {
       }
     };
 
-    p.mousePressed = function() {
+    p.mousePressed = function() { //**ai 사용: 문 클릭 시 열리는 기능**
       const door1Clicked = p.mouseX >= door1X && p.mouseX <= door1X + doorWidth && 
                            p.mouseY >= doorY && p.mouseY <= doorY + doorHeight;
 
@@ -91,7 +91,7 @@ export function makeScreendoorSketch() {
       }
     };
 
-    p.mouseWheel = function(event) {
+    p.mouseWheel = function(event) { //**ai 사용: 위로 스크롤하면 화면 전체가 확대되는 기능능**
       if (doorState === 'open' && !transitionTriggered) {
         if (event.delta < 0) { // 위로 스크롤
           scaleFactor += 0.05;
