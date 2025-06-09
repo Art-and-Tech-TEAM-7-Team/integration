@@ -60,7 +60,7 @@ export function makeInnerSketch() {
       // 사람 등장
       for (let personObj of people) {
         let elapsed = p.millis() - personObj.startTime;
-        let alpha = p.map(elapsed, 0, 1000, 0, 255, true);
+        let alpha = p.map(elapsed, 0, 500, 0, 255, true);
         p.tint(255, alpha);
         p.image(person, personObj.x, personObj.y, 160, 380);
       }

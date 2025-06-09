@@ -6,8 +6,6 @@ export function makeStairSketch() {
     let personW = 100;
     let phoneVisible = false;
     let phoneTimer = 0;
-    let transitionStart = null;
-    let showChat = false;
     let moveEnabled = false;
     let hasPhoneShown = false;
     let moveCount = 0;
@@ -39,11 +37,11 @@ export function makeStairSketch() {
       if (phoneVisible) {
         let elapsed = p.millis() - phoneTimer;
 
-        if (elapsed < 2000) {
-          // 0~2초: 핸드폰만
+        if (elapsed < 1000) {
+          // 0~1초: 핸드폰만
           p.image(phone, phoneX, phoneY, 350, 250);
-        } else if (elapsed < 3000) {
-          // 2~3초: 혼합
+        } else if (elapsed < 2000) {
+          // 1~2초: 혼합
           let alpha = p.map(elapsed, 2000, 3000, 0, 255);
           p.push();
           p.tint(255, 255 - alpha);
@@ -54,8 +52,8 @@ export function makeStairSketch() {
           p.tint(255, alpha);
           p.image(chat, phoneX, phoneY, 350, 250);
           p.pop();
-        } else if (elapsed < 4000) {
-          // 3~4초: 말풍선만
+        } else if (elapsed < 3000) {
+          // 2~3초: 말풍선만
           p.image(chat, phoneX, phoneY, 350, 250);
         } else {
           // 이후: 종료

@@ -24,7 +24,7 @@ let frameCountForStep = 0;      // 프레임 전환 카운터(속도조절용)
 const FRAME_CHANGE_SPEED = 10;   // 몇 프레임마다 한 번씩 이미지가 바뀔지
 
 let cameraX = 0; // 카메라의 초기 X 위치
-let speed = 10; // 캐릭터의 속도도
+let speed = 13; // 캐릭터의 속도도
 let viewWidth;
 
 let messageCount; 
@@ -124,6 +124,7 @@ p.draw = function() {
 
 // 화면 상에서 문, 책상 클릭 판정(책상 클릭 시 desk.js파일로 이동)
 p.mousePressed = function() {
+
     // 문
     if (p.mouseX >= drawDoorX && p.mouseX <= drawDoorX + doorImg[0].width) {
         window.state.doorOpen = true;

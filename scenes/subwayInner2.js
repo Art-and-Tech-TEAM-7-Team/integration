@@ -11,9 +11,7 @@ export function makeInner2Sketch() {
 
     let isFinished = false;
     let vibrationAmplitude = 4;
-    let doorOpened = false;
-    let doorOpeningStart = null;
-    let doorOpenDuration = 800;
+    let doorState = 'closed'; // 문 상태 관리
 
     p.preload = function () {
       inner2 = p.loadImage('assets/subway/지하철-내부3.jpg');
@@ -46,33 +44,40 @@ export function makeInner2Sketch() {
         p.mouseX <= door2X + 300 &&
         p.mouseY >= door1Y &&
         p.mouseY <= door1Y + 750 &&
-        !doorOpened;
+        doorState === 'closed';
 
       let doorScale = isMouseOverDoor ? 1.05 : 1.0;
 
-      if (doorOpened) {
-        let doorElapsed = p.millis() - doorOpeningStart;
-        let dOffset = p.constrain(doorElapsed / doorOpenDuration, 0, 1) * 150;
-        p.image(door1, door1X - dOffset, door1Y, 300, 750);
-        p.image(door2, door2X + dOffset, door2Y, 300, 750);
-      } else {
-        p.push();
-        p.translate(door1X + 150, door1Y + 375);
-        p.scale(doorScale);
-        p.image(door1, -150, -375, 300, 750);
-        p.pop();
-
-        p.push();
-        p.translate(door2X + 150, door2Y + 375);
-        p.scale(doorScale);
-        p.image(door2, -150, -375, 300, 750);
-        p.pop();
+      // 문 열림 애니메이션 적용
+      if (doorState === 'opening') {
+        if (door1X > -150) {
+          door1X -= 8;
+          door2X += 8;
+        } else {
+          doorState = 'open';
+        }
       }
 
+      // 문 그리기
+      p.push();
+      p.translate(door1X + 150, door1Y + 375);
+      p.scale(doorScale);
+      p.image(door1, -150, -375, 300, 750);
+      p.pop();
+
+      p.push();
+      p.translate(door2X + 150, door2Y + 375);
+      p.scale(doorScale);
+      p.image(door2, -150, -375, 300, 750);
+      p.pop();
+
       // 사람 hover 체크 (클릭 전까지만 확대)
-      let isMouseOverPerson = !isFinished && 
-        p.mouseX >= pX && p.mouseX <= pX + 220 &&
-        p.mouseY >= pY && p.mouseY <= pY + 700;
+      let isMouseOverPerson =
+        !isFinished &&
+        p.mouseX >= pX &&
+        p.mouseX <= pX + 220 &&
+        p.mouseY >= pY &&
+        p.mouseY <= pY + 700;
 
       let personScale = isMouseOverPerson ? 1.05 : 1.0;
       let currentPerson = isFinished ? person2 : person;
@@ -110,23 +115,25 @@ export function makeInner2Sketch() {
       }
 
       // 문 클릭
-      if (
-        isFinished &&
-        !doorOpened &&
-        p.mouseX >= door1X &&
-        p.mouseX <= door2X + 300 &&
-        p.mouseY >= door1Y &&
-        p.mouseY <= door1Y + 750
-      ) {
-        doorOpened = true;
-        doorOpeningStart = p.millis();
-      } else if (doorOpened) {
+      const door1Clicked = p.mouseX >= door1X &&
+                           p.mouseX <= door1X + 300 &&
+                           p.mouseY >= door1Y &&
+                           p.mouseY <= door1Y + 750;
+
+      const door2Clicked = p.mouseX >= door2X &&
+                           p.mouseX <= door2X + 300 &&
+                           p.mouseY >= door2Y &&
+                           p.mouseY <= door2Y + 750;
+
+      if (isFinished && doorState === 'closed' && (door1Clicked || door2Clicked)) {
+        doorState = 'opening';
+      } else if (doorState === 'open') {
         window.dispatchEvent(new Event("goToStair"));
       }
     };
 
     p.mouseWheel = function () {
-      if (doorOpened) {
+      if (doorState === 'open') {
         window.dispatchEvent(new Event("goToStair"));
       }
     };

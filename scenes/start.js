@@ -1,7 +1,6 @@
-
-export function makeStartSketch() {
-return function(p) {
-
+export function makeStartSketch() { // AI이용 - 시작 화면 스케치 함수
+return function(p) { // AI이용 - p는 p5.js의 인스턴스(캔버스) 객체
+ 
 
 let viewPoint = 0;
 let startImg;
@@ -93,9 +92,9 @@ p.mousePressed = function() {
 
 p.mouseWheel = function(event) {
     if (!showTitle && eyeOpen) {
-        if (event.delta > 0) {
+        if (event.delta > 0) { // AI이용 - 스크롤 다운, 업 판정정
         viewPoint += 10; // 스크롤 다운 
-        }
+        } 
         if (event.delta < 0) {
         viewPoint -= 10; // 스크롤 업
         }
@@ -108,7 +107,7 @@ p.mouseWheel = function(event) {
     }
 };
 
-// 브라우저 창의 크기가 변경되었을 때 캔버스의 크기를 브라우저에 맞추는 함수수
+// AI이용 - 브라우저 창의 크기가 변경되었을 때 캔버스의 크기를 브라우저에 맞추는 함수
 p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
 };

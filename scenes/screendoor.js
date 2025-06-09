@@ -64,8 +64,8 @@ export function makeScreendoorSketch() {
       // 문 열리는 애니메이션
       if (doorState === 'opening') {
         if (door1X > 50) {
-          door1X -= 5;
-          door2X += 5;
+          door1X -= 10;
+          door2X += 10;
         } else {
           doorState = 'open';
           doorTimer = p.millis();

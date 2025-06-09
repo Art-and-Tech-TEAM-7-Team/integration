@@ -26,13 +26,10 @@ let rotating = false;
 let hourAngle, minuteAngle;
 let targetHourAngle, targetMinuteAngle;
 const minuteLength = 70;
-const hourLength = 40;
-const minuteSpeed = 0.2;
+const hourLength = 40; 
+const minuteSpeed = 0.5; // 분침 속도
 let hourSpeed;
 
-let coffeeImg = ["","","","",""];
-let coffeeX, coffeeY;
-let selectCoffee = 0;
 let coffeeW = 70;
 
 p.preload = function () {
@@ -40,9 +37,6 @@ p.preload = function () {
   bossImg = p.loadImage("assets/company/boss1.png");
   documentImg = p.loadImage("assets/company/paper.png");
   clockIMG = p.loadImage("assets/company/clock.png");
-  for (let i = 0; i < 5; i++) {
-    coffeeImg[i] = p.loadImage("assets/coffeeShop/커피"+(i + 1)+".png");
-  }
 };
 
 p.setup = function () {
@@ -53,8 +47,6 @@ p.setup = function () {
   bossY = p.height * 0.3;
   bossW = bossImg.width;
   bossH = bossImg.height;
-  coffeeX=p.width*0.5;
-  coffeeY=p.height*0.7;
   resetClock();
 };
 
@@ -66,8 +58,6 @@ p.windowResized = function () {
   bossY = p.height * 0.3;
   bossW = bossImg.width;
   bossH = bossImg.height;
-  coffeeX = p.width * 0.5;
-  coffeeY = p.height * 0.7;
 };
 
 function resetClock() {
@@ -227,35 +217,15 @@ p.draw = function () {
     p.text("오늘 출근도 빠르고 근무태도도 성실하군요~.", balloonX + 150, balloonY + 25);
   }
 
-  switch (selectCoffee) {
-    case 1:
-    drawElement(coffeeImg[0], coffeeX, coffeeY, coffeeW);
-    break;
-    case 2:
-    drawElement(coffeeImg[1], coffeeX, coffeeY, coffeeW);
-    break;
-    case 3:
-    drawElement(coffeeImg[2], coffeeX, coffeeY, coffeeW);
-    break;
-    case 4:
-    drawElement(coffeeImg[3], coffeeX, coffeeY, coffeeW);
-    break;
-    case 5:
-    drawElement(coffeeImg[4], coffeeX, coffeeY, coffeeW);
-    break;
-}
-
-if (blackScreen) {
-  p.fill(255, 50);
-  p.rect(0, 0, p.width, p.height);
-  p.fill(0);
-  p.noStroke();
-  p.textSize(30);
-  p.textAlign(p.CENTER, p.CENTER);
-  p.text("만약 교통카드를 가져갔다면?", p.width/2, p.height/2);
-}
-
-  
+  if (blackScreen) {
+    p.fill(255, 50);
+    p.rect(0, 0, p.width, p.height);
+    p.fill(0);
+    p.noStroke();
+    p.textSize(30);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.text("만약 교통카드를 가져갔다면?", p.width/2, p.height/2);
+  }
 };
 
 function drawElement(img, imgX, imgY, imgW) {

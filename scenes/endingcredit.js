@@ -17,16 +17,6 @@ export function makeEndingcreditSketch(){
          p.resizeCanvas(p.windowWidth, p.windowHeight);
         };
 
-        function drawText() {
-            p.push();
-            p.textAlign(p.CENTER, p.BOTTOM);
-            p.textSize(150);
-            p.stroke(255); p.strokeWeight(7);
-            p.fill(255, 0, 0);
-            p.text("화면을 클릭해 다음 장면으로 넘어가 주세요!", p.width/2, p.height/2);
-            p.pop();
-        }
-
     }
    
 

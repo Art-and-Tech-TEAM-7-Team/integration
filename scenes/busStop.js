@@ -14,7 +14,7 @@ let frameCountForStep = 0;      // 프레임 전환 카운터(속도조절용)
 const FRAME_CHANGE_SPEED = 7;   // 몇 프레임마다 한 번씩 이미지가 바뀔지
 
 let cameraX; // 카메라의 초기 X 위치
-let speed = 10; // 캐릭터의 속도도
+let speed = 15; // 캐릭터의 속도도
 let viewWidth;
 
 let speak = false;
@@ -44,7 +44,7 @@ p.setup = function() {
 
 p.draw = function() {
     p.background(220);
-    viewWidth = Math.min(p.windowWidth, busStopImg.width);
+    viewWidth = Math.min(p.windowWidth, busStopImg.width); // AI이용 - 화면 너비를 버스 정류장 이미지 너비로 설정
 
     let screenCenter = viewWidth / 2;
 
@@ -57,6 +57,7 @@ p.draw = function() {
     p.image(busStopImg, -cameraX, 0, busStopImg.width, p.height);
     drawBus();
     drawCharacter();
+    
     if (showMessage) {
         messageCount++;
         if (messageCount >= 1000) {
@@ -130,7 +131,7 @@ function drawBus() {
         busMove = true;
     }
     if (busMove) {
-        busX +=11;
+        busX +=16;
     }
     let drawBusX = busX - cameraX;
     p.image(busImg, drawBusX, busY, busW , busH);
@@ -151,7 +152,7 @@ function drawText() {
 
     p.fill(0);
     p.noStroke();
-    p.textSize(14);
+    p.textSize(21);
     p.textAlign(p.CENTER, p.CENTER);
     p.text(message, balloonX, balloonY + 15);
     p.pop();

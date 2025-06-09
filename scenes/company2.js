@@ -25,22 +25,14 @@ export function makeCompany2Sketch() {
     let targetHourAngle, targetMinuteAngle;
     const minuteLength = 70;
     const hourLength = 40;
-    const minuteSpeed = 0.2;
+    const minuteSpeed = 0.5;
     let hourSpeed;
-
-    let coffeeImg = ["","","","",""];
-    let coffeeX, coffeeY;
-    let selectCoffee =0;
-    let coffeeW=70;
 
     p.preload = function () {
       companyIMG = p.loadImage("assets/company/company2.png");
       img = p.loadImage("assets/company/boss2.png");
       documentImg = p.loadImage("assets/company/paper.png");
       clockIMG=p.loadImage("assets/company/clock.png");
-       for (let i = 0; i < 5; i++) {
-        coffeeImg[i] = p.loadImage("assets/coffeeShop/커피"+(i+1)+".png");
-    }
     };
 
     p.setup = function () {
@@ -51,8 +43,6 @@ export function makeCompany2Sketch() {
       bossY = p.height * 0.3;
       bossW = img.width;
       bossH = img.height;
-      coffeeX=p.width*0.5;
-      coffeeY=p.height*0.7;
       resetClock();
     };
 
@@ -64,8 +54,6 @@ export function makeCompany2Sketch() {
       clockY = p.height * 0.15;
       bossW = img.width;
       bossH = img.height;
-       coffeeX=p.width*0.5;
-      coffeeY=p.height*0.7;
     };
 
     function resetClock() {
@@ -79,7 +67,7 @@ export function makeCompany2Sketch() {
       hourSpeed = minuteSpeed * (hourDelta / minuteDelta);
     }
 
-  function drawHoverClock(img, x, y, w) {
+    function drawHoverClock(img, x, y, w) {
   let h = w * (img.height / img.width);
   p.imageMode(p.CENTER);
 
@@ -97,24 +85,24 @@ export function makeCompany2Sketch() {
   }
 
   p.imageMode(p.CORNER); // 다른 이미지 위해 복구
-}
+    }
 
-function drawHoverBoss(img, x, y) {
-  let w = img.width;
-  let h = img.height;
+    function drawHoverBoss(img, x, y) {
+      let w = img.width;
+      let h = img.height;
 
-  let isHover =
-    p.mouseX >= x && p.mouseX <= x + w &&
-    p.mouseY >= y && p.mouseY <= y + h;
+      let isHover =
+        p.mouseX >= x && p.mouseX <= x + w &&
+        p.mouseY >= y && p.mouseY <= y + h;
 
-  if (isHover) {
-    let hoverW = w * 1.1;
-    let hoverH = h * 1.1;
-    p.image(img, x - (hoverW - w)/2, y - (hoverH - h)/2, hoverW, hoverH);
-  } else {
-    p.image(img, x, y, w, h);
-  }
-}
+      if (isHover) {
+        let hoverW = w * 1.1;
+        let hoverH = h * 1.1;
+        p.image(img, x - (hoverW - w)/2, y - (hoverH - h)/2, hoverW, hoverH);
+      } else {
+        p.image(img, x, y, w, h);
+      }
+    }
 
 
 
@@ -187,7 +175,6 @@ p.draw = function () {
     ) {
       rotating = false;
       window.state.ending[1] = true;
-
     }
 
     // 서류 생성
@@ -231,23 +218,7 @@ p.draw = function () {
     p.text("오늘 지각도 하시고 근무태도도 불량하시군요?!!", balloonX + 150, balloonY + 25);
   }
 
-  switch (selectCoffee) {
-    case 1:
-    drawElement(coffeeImg[0], coffeeX, coffeeY, coffeeW);
-    break;
-    case 2:
-    drawElement(coffeeImg[1], coffeeX, coffeeY, coffeeW);
-    break;
-    case 3:
-    drawElement(coffeeImg[2], coffeeX, coffeeY, coffeeW);
-    break;
-    case 4:
-    drawElement(coffeeImg[3], coffeeX, coffeeY, coffeeW);
-    break;
-    case 5:
-    drawElement(coffeeImg[4], coffeeX, coffeeY, coffeeW);
-    break;
-}     
+  
 
 if (blackScreen) {
   p.fill(255, 50);

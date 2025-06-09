@@ -91,7 +91,7 @@ p.draw=function() {
             setTimeout(() => {
                 music.stop();
                 window.dispatchEvent(new Event("goToContrast"));
-            }, 4000); 
+            }, 3000); 
             // window.dispatchEvent(new Event("goToContrast"));
         }
     }

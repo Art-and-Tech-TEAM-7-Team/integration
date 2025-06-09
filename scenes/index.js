@@ -16,8 +16,8 @@ import { makeBusStopSketch } from "./busStop.js";
 
 import { makeEndingcreditSketch } from "./endingcredit.js";
 
-export const SCENE_MAP = {
-  start:        () => makeStartSketch(),
+export const SCENE_MAP = { // AI이용 - 각 장면을 생성하는 함수들
+  start:        () => makeStartSketch(), 
   house:        () => makeHouseSketch(),
   desk:         () => makeDeskSketch(),
   coffeeShop:   () => makeCoffeeSHopSketch(),
@@ -33,7 +33,7 @@ export const SCENE_MAP = {
   busStop:      () => makeBusStopSketch()
 };
 
-// 이벤트 이름 <-> 장면 이름 매핑 (scene 추가/수정시 여기만 고치면 됨)
+// 이벤트 이름 <-> 장면 이름 매핑 - 위의 객체 참고(AI이용용)
 export const EVENT_TO_SCENE = {
   goToHouse: "house",
   goToDesk: "desk",
